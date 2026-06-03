@@ -10,6 +10,15 @@ const movieGrid = document.querySelector(".movie-grid");
 const searchInput = document.getElementById("searchInput");
 const API_KEY = "9dd1bc3b";
 
+const genreFilter =
+    document.getElementById("genreFilter");
+
+const statusFilter =
+    document.getElementById("statusFilter");
+
+const sortFilter =
+    document.getElementById("sortFilter");
+
 // ======================
 // CURRENT PAGE
 // ======================
@@ -29,42 +38,10 @@ let movies = JSON.parse(
 
 if (!movies) {
 
-    movies = [
-        {
-            title: "Interstellar",
-            genre: "Sci-Fi",
-            year: "2014",
-            poster: "https://picsum.photos/300/450?random=11",
-            status: "watchlist",
-            favorite: false
-        },
-        {
-            title: "Inception",
-            genre: "Sci-Fi",
-            year: "2010",
-            poster: "https://picsum.photos/300/450?random=12",
-            status: "watchlist",
-            favorite: false
-        },
-        {
-            title: "The Terminal",
-            genre: "Drama",
-            year: "2004",
-            poster: "https://picsum.photos/300/450?random=13",
-            status: "watchlist",
-            favorite: false
-        },
-        {
-            title: "Incendies",
-            genre: "Drama",
-            year: "2010",
-            poster: "https://picsum.photos/300/450?random=14",
-            status: "watchlist",
-            favorite: false
-        }
-    ];
+    movies = [];
 
     saveMovies();
+
 }
 
 // ======================
@@ -139,6 +116,157 @@ function toggleStatus(title) {
     saveMovies();
 
     loadPageMovies();
+
+// ======================
+// FILTERS
+// ======================
+
+function applyFilters() {
+
+    let filteredMovies = [...movies];
+
+    // PAGE FILTER
+
+    if (currentPage === "watchlist.html") {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.status === "watchlist"
+            );
+
+    }
+
+    else if (currentPage === "watched.html") {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.status === "watched"
+            );
+
+    }
+
+    else if (currentPage === "favourites.html") {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.favorite
+            );
+
+    }
+
+    // GENRE
+
+    if (
+        genreFilter &&
+        genreFilter.value !== "Genre" &&
+        genreFilter.value !== "All"
+    ) {
+
+        filteredMovies =
+            filteredMovies.filter(movie =>
+                movie.genre
+                    .toLowerCase()
+                    .includes(
+                        genreFilter.value.toLowerCase()
+                    )
+            );
+
+    }
+
+    // STATUS
+
+    if (
+        statusFilter &&
+        statusFilter.value !== "Status" &&
+        statusFilter.value !== "All"
+    ) {
+
+        filteredMovies =
+            filteredMovies.filter(movie =>
+                movie.status.toLowerCase() ===
+                statusFilter.value.toLowerCase()
+            );
+
+    }
+
+    // SORT
+
+    if (
+        sortFilter &&
+        sortFilter.value === "Title"
+    ) {
+
+        filteredMovies.sort(
+            (a, b) =>
+                a.title.localeCompare(b.title)
+        );
+
+    }
+
+    if (
+        sortFilter &&
+        sortFilter.value === "Year"
+    ) {
+
+        filteredMovies.sort(
+            (a, b) =>
+                Number(b.year) -
+                Number(a.year)
+        );
+
+    }
+
+    renderMovies(filteredMovies);
+
+}
+
+if (genreFilter) {
+
+    genreFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+}
+
+if (statusFilter) {
+
+    statusFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+}
+
+if (sortFilter) {
+
+    sortFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+}
+
+if (statusFilter) {
+
+    statusFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+}
+
+if (sortFilter) {
+
+    sortFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+}
 }
 
 // ======================
@@ -259,7 +387,7 @@ function loadPageMovies() {
 
     }
 
-    else if (currentPage === "favorites.html") {
+    else if (currentPage === "favourites.html") {
 
         filteredMovies =
             movies.filter(

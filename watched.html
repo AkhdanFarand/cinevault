@@ -51,24 +51,64 @@
 
         <h2>Watched</h2>
 
-        <!-- Toolbar -->
-        <div class="movie-toolbar">
+    <!-- Toolbar -->
+    <div class="movie-toolbar">
 
-            <input
-                type="text"
-                id="searchInput"
-                class="search-input"
-                placeholder="Search Movies..."
-            >
+        <!-- Search -->
+        <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search Movies..."
+        >
 
-            <button
-                id="openModal"
-                class="add-btn"
-            >
-                + Add Movie
-            </button>
+        <!-- Filters -->
+        <div class="filters">
+
+            <select id="genreFilter">
+
+                <option>Genre</option>
+
+                <option>All</option>
+                <option>Action</option>
+                <option>Drama</option>
+                <option>Comedy</option>
+                <option>Sci-Fi</option>
+                <option>Thriller</option>
+                <option>Romance</option>
+                <option>Horror</option>
+
+            </select>
+
+            <select id="statusFilter">
+
+                <option>Status</option>
+
+                <option>All</option>
+                <option>Watchlist</option>
+                <option>Watched</option>
+
+            </select>
+
+            <select id="sortFilter">
+
+                <option>Sort By</option>
+
+                <option>Title</option>
+                <option>Year</option>
+
+            </select>
 
         </div>
+
+        <button
+            id="openModal"
+            class="add-btn"
+        >
+            + Add Movie
+        </button>
+
+    </div>
 
         <!-- Movie Grid -->
         <div class="movie-grid"></div>

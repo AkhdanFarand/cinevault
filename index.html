@@ -19,25 +19,25 @@
         <ul class="nav-links">
 
             <li>
-                <a href="index.html" id="homeLink">
+                <a href="index.html">
                     Home
                 </a>
             </li>
 
             <li>
-                <a href="watchlist.html" id="watchlistLink">
+                <a href="watchlist.html">
                     Watchlist
                 </a>
             </li>
 
             <li>
-                <a href="watched.html" id="watchedLink">
+                <a href="watched.html">
                     Watched
                 </a>
             </li>
 
             <li>
-                <a href="favourites.html" id="favoriteLink">
+                <a href="favourites.html">
                     Favorites
                 </a>
             </li>
@@ -61,22 +61,26 @@
                 and keep track of your favourites.
             </p>
 
-            <button class="hero-btn">
+            <a href="#movies-section" class="hero-btn">
                 Explore Watchlist
-            </button>
+            </a>
 
         </div>
 
     </section>
 
     <!-- Movies Section -->
-    <section class="movies">
+    <section
+        id="movies-section"
+        class="movies"
+    >
 
         <h2>All Movies</h2>
 
         <!-- Toolbar -->
         <div class="movie-toolbar">
 
+            <!-- Search -->
             <input
                 type="text"
                 id="searchInput"
@@ -84,6 +88,46 @@
                 placeholder="Search Movies..."
             >
 
+            <!-- Filters -->
+            <div class="filters">
+
+                <select id="genreFilter">
+
+                    <option>Genre</option>
+
+                    <option>All</option>
+                    <option>Action</option>
+                    <option>Drama</option>
+                    <option>Comedy</option>
+                    <option>Sci-Fi</option>
+                    <option>Thriller</option>
+                    <option>Romance</option>
+                    <option>Horror</option>
+
+                </select>
+
+                <select id="statusFilter">
+
+                    <option>Status</option>
+
+                    <option>All</option>
+                    <option>Watchlist</option>
+                    <option>Watched</option>
+
+                </select>
+
+                <select id="sortFilter">
+
+                    <option>Sort By</option>
+
+                    <option>Title</option>
+                    <option>Year</option>
+
+                </select>
+
+            </div>
+
+            <!-- Add Movie -->
             <button
                 id="openModal"
                 class="add-btn"
@@ -99,7 +143,10 @@
     </section>
 
     <!-- Modal -->
-    <div id="movieModal" class="modal">
+    <div
+        id="movieModal"
+        class="modal"
+    >
 
         <div class="modal-content">
 
