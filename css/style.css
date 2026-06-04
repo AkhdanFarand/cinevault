@@ -720,4 +720,55 @@ body{
     drop-shadow(
         0 0 24px rgba(18,215,163,1)
     );
+
+    
+}
+
+/* =======================
+   MOVIE DETAIL
+======================= */
+
+.movie-detail{
+
+    padding:80px;
+}
+
+.detail-container{
+
+    display:flex;
+
+    gap:40px;
+
+    align-items:flex-start;
+}
+
+.detail-poster{
+
+    width:320px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.4);
+}
+
+.detail-info{
+
+    flex:1;
+}
+
+.detail-info h1{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+}
+
+.detail-info p{
+
+    margin-bottom:16px;
+
+    color:#c9d6e5;
+
+    line-height:1.8;
 }

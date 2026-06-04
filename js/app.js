@@ -281,15 +281,20 @@ function renderMovies(movieList) {
     movieList.forEach(movie => {
 
         const card = `
-            <div class="movie-card">
+    <div
+        class="movie-card"
+        onclick="
+            window.location.href=
+            'detail.html?id=${encodeURIComponent(movie.title)}'
+        "
+    >
 
-                <img
-                    src="${movie.poster}"
-                    alt="${movie.title}"
-                >
+        <img
+            src="${movie.poster}"
+            alt="${movie.title}"
+        >
 
-                <div class="movie-info">
-
+        <div class="movie-info">
                     <h3>${movie.title}</h3>
 
                     <p>

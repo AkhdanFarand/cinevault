@@ -13,31 +13,35 @@
     <nav class="navbar">
 
         <div class="logo">
-            CineVault
+            <img
+                src="assets/logo.png"
+                alt="CineVault Logo"
+                class="logo-img"
+            >
         </div>
 
         <ul class="nav-links">
 
             <li>
-                <a href="index.html" id="homeLink">
+                <a href="index.html">
                     Home
                 </a>
             </li>
 
             <li>
-                <a href="watchlist.html" id="watchlistLink">
+                <a href="watchlist.html">
                     Watchlist
                 </a>
             </li>
 
             <li>
-                <a href="watched.html" id="watchedLink">
+                <a href="watched.html">
                     Watched
                 </a>
             </li>
 
             <li>
-                <a href="favourites.html" id="favoriteLink">
+                <a href="favourites.html">
                     Favorites
                 </a>
             </li>
@@ -116,7 +120,10 @@
     </section>
 
     <!-- Modal -->
-    <div id="movieModal" class="modal">
+    <div
+        id="movieModal"
+        class="modal"
+    >
 
         <div class="modal-content">
 
@@ -135,29 +142,15 @@
 
             <input
                 type="text"
+                id="modalSearchInput"
                 class="modal-search"
                 placeholder="Search movie..."
             >
 
-            <div class="search-results">
-
-                <div class="result-item">
-                    Interstellar
-                </div>
-
-                <div class="result-item">
-                    Inception
-                </div>
-
-                <div class="result-item">
-                    Oppenheimer
-                </div>
-
-                <div class="result-item">
-                    The Dark Knight
-                </div>
-
-            </div>
+            <div
+                id="searchResults"
+                class="search-results"
+            ></div>
 
         </div>
 
