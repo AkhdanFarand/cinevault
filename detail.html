@@ -52,38 +52,110 @@
 
     <section class="movie-detail">
 
-        <div class="detail-container">
+    
 
-            <img
-                id="detailPoster"
-                class="detail-poster"
-                src=""
-                alt=""
-            >
+    <div class="detail-container">
 
-            <div class="detail-info">
+        <img
+            id="detailPoster"
+            class="detail-poster"
+            src=""
+            alt=""
+        >
+
+        <div class="detail-info">
+
+            <div class="detail-top">
 
                 <h1 id="detailTitle">
                     Loading...
                 </h1>
 
-                <p id="detailYear"></p>
+                <span id="detailYear"></span>
 
-                <p id="detailGenre"></p>
+            </div>
 
-                <p id="detailPlot"></p>
+            <p
+                id="detailDirector"
+                class="detail-director"
+            ></p>
 
-                <p id="detailActors"></p>
+            <p
+                id="detailPlot"
+                class="detail-plot"
+            ></p>
+            <div class="action-panel">
 
-                <p id="detailDirector"></p>
+    <!-- TOP ACTIONS -->
 
-                <p id="detailRating"></p>
+    <div class="detail-actions">
+
+        <button
+            id="watchBtn"
+            class="action-btn"
+        >
+            <div class="action-icon">
+                👁
+            </div>
+
+            <span>Watch</span>
+        </button>
+
+        <button
+            id="likeBtn"
+            class="action-btn"
+        >
+            <div class="action-icon">
+                ❤
+            </div>
+
+            <span>Like</span>
+        </button>
+
+        <button
+            id="watchlistBtn"
+            class="action-btn"
+        >
+            <div class="action-icon">
+                🔖
+            </div>
+
+            <span>Watchlist</span>
+        </button>
+
+    </div>
+
+        <!-- RATE -->
+
+        <div class="rating-section">
+
+            <p>Rate</p>
+
+            <div class="stars">
+
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+        </div>
+
+    </div>
+    
+    <button
+            class="back-btn"
+            onclick="history.back()"
+        >
+            ← Back
+        </button>
+</section>
 
     <script src="js/detail.js"></script>
 

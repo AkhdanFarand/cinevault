@@ -305,14 +305,20 @@ function renderMovies(movieList) {
 
                         <button
                             class="status-btn"
-                            onclick="toggleStatus('${movie.title}')"
+                            onclick="
+                                event.stopPropagation();
+                                toggleStatus('${movie.title}')
+                            "
                         >
                             ${movie.status}
                         </button>
 
                         <button
                             class="favorite-btn"
-                            onclick="toggleFavorite('${movie.title}')"
+                            onclick="
+                                event.stopPropagation();
+                                toggleFavorite('${movie.title}')
+                            "
                         >
                             ${movie.favorite ? "❤️" : "🤍"}
                         </button>
