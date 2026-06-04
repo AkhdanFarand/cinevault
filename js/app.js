@@ -118,7 +118,7 @@ function toggleStatus(title) {
     loadPageMovies();
 
 // ======================
-// FILTERS
+// APPLY FILTERS
 // ======================
 
 function applyFilters() {
@@ -134,7 +134,6 @@ function applyFilters() {
                 movie =>
                     movie.status === "watchlist"
             );
-
     }
 
     else if (currentPage === "watched.html") {
@@ -144,7 +143,6 @@ function applyFilters() {
                 movie =>
                     movie.status === "watched"
             );
-
     }
 
     else if (currentPage === "favourites.html") {
@@ -152,63 +150,78 @@ function applyFilters() {
         filteredMovies =
             filteredMovies.filter(
                 movie =>
-                    movie.favorite
+                    movie.favorite === true
             );
+    }
 
+    // SEARCH
+
+    if (searchInput) {
+
+        const keyword =
+            searchInput.value.toLowerCase();
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.title
+                        .toLowerCase()
+                        .includes(keyword)
+            );
     }
 
     // GENRE
 
     if (
         genreFilter &&
-        genreFilter.value !== "Genre" &&
-        genreFilter.value !== "All"
+        genreFilter.value !== "all"
     ) {
 
         filteredMovies =
-            filteredMovies.filter(movie =>
-                movie.genre
-                    .toLowerCase()
-                    .includes(
-                        genreFilter.value.toLowerCase()
-                    )
+            filteredMovies.filter(
+                movie =>
+                    movie.genre
+                        .includes(
+                            genreFilter.value
+                        )
             );
-
     }
 
     // STATUS
 
     if (
         statusFilter &&
-        statusFilter.value !== "Status" &&
-        statusFilter.value !== "All"
+        statusFilter.value !== "all"
     ) {
 
         filteredMovies =
-            filteredMovies.filter(movie =>
-                movie.status.toLowerCase() ===
-                statusFilter.value.toLowerCase()
+            filteredMovies.filter(
+                movie =>
+                    movie.status ===
+                    statusFilter.value
             );
-
     }
 
-    // SORT
+    // SORT TITLE
 
     if (
         sortFilter &&
-        sortFilter.value === "Title"
+        sortFilter.value === "title"
     ) {
 
         filteredMovies.sort(
             (a, b) =>
-                a.title.localeCompare(b.title)
+                a.title.localeCompare(
+                    b.title
+                )
         );
-
     }
+
+    // SORT YEAR
 
     if (
         sortFilter &&
-        sortFilter.value === "Year"
+        sortFilter.value === "year"
     ) {
 
         filteredMovies.sort(
@@ -216,56 +229,9 @@ function applyFilters() {
                 Number(b.year) -
                 Number(a.year)
         );
-
     }
 
     renderMovies(filteredMovies);
-
-}
-
-if (genreFilter) {
-
-    genreFilter.addEventListener(
-        "change",
-        applyFilters
-    );
-
-}
-
-if (statusFilter) {
-
-    statusFilter.addEventListener(
-        "change",
-        applyFilters
-    );
-
-}
-
-if (sortFilter) {
-
-    sortFilter.addEventListener(
-        "change",
-        applyFilters
-    );
-
-}
-
-if (statusFilter) {
-
-    statusFilter.addEventListener(
-        "change",
-        applyFilters
-    );
-
-}
-
-if (sortFilter) {
-
-    sortFilter.addEventListener(
-        "change",
-        applyFilters
-    );
-
 }
 }
 
@@ -404,47 +370,56 @@ function loadPageMovies() {
 loadPageMovies();
 
 // ======================
-// SEARCH
+// APPLY FILTERS
 // ======================
 
-if (searchInput) {
+function applyFilters() {
 
-    searchInput.addEventListener("input", () => {
+    let filteredMovies = [...movies];
+
+    // ======================
+    // PAGE FILTER
+    // ======================
+
+    if (currentPage === "watchlist.html") {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.status === "watchlist"
+            );
+
+    }
+
+    else if (currentPage === "watched.html") {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.status === "watched"
+            );
+
+    }
+
+    else if (currentPage === "favorites.html") {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.favorite === true
+            );
+
+    }
+
+    // ======================
+    // SEARCH FILTER
+    // ======================
+
+    if (searchInput) {
 
         const keyword =
-            searchInput.value.toLowerCase();
-
-        let filteredMovies = [...movies];
-
-        if (currentPage === "watchlist.html") {
-
-            filteredMovies =
-                movies.filter(
-                    movie =>
-                        movie.status === "watchlist"
-                );
-
-        }
-
-        else if (currentPage === "watched.html") {
-
-            filteredMovies =
-                movies.filter(
-                    movie =>
-                        movie.status === "watched"
-                );
-
-        }
-
-        else if (currentPage === "favorites.html") {
-
-            filteredMovies =
-                movies.filter(
-                    movie =>
-                        movie.favorite
-                );
-
-        }
+            searchInput.value
+                .toLowerCase();
 
         filteredMovies =
             filteredMovies.filter(
@@ -454,68 +429,305 @@ if (searchInput) {
                         .includes(keyword)
             );
 
-        renderMovies(filteredMovies);
+    }
 
-    });
+    // ======================
+    // GENRE FILTER
+    // ======================
+
+    if (
+        genreFilter &&
+        genreFilter.value !== ""
+    ) {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.genre
+                        .toLowerCase()
+                        .includes(
+                            genreFilter.value
+                                .toLowerCase()
+                        )
+            );
+
+    }
+
+    // ======================
+    // STATUS FILTER
+    // ======================
+
+    if (
+        statusFilter &&
+        statusFilter.value !== ""
+    ) {
+
+        filteredMovies =
+            filteredMovies.filter(
+                movie =>
+                    movie.status
+                        .toLowerCase()
+                        ===
+                    statusFilter.value
+                        .toLowerCase()
+            );
+
+    }
+
+    // ======================
+    // SORT
+    // ======================
+
+    if (
+        sortFilter &&
+        sortFilter.value === "title"
+    ) {
+
+        filteredMovies.sort(
+            (a, b) =>
+                a.title.localeCompare(
+                    b.title
+                )
+        );
+
+    }
+
+    if (
+        sortFilter &&
+        sortFilter.value === "year"
+    ) {
+
+        filteredMovies.sort(
+            (a, b) =>
+                Number(b.year)
+                -
+                Number(a.year)
+        );
+
+    }
+
+    renderMovies(filteredMovies);
 
 }
 
 // ======================
-// ADD MOVIE
+// SEARCH
 // ======================
 
-const resultItems =
-    document.querySelectorAll(".result-item");
+if (searchInput) {
 
-resultItems.forEach(item => {
+    searchInput.addEventListener(
+        "input",
+        applyFilters
+    );
 
-    item.addEventListener("click", async () => {
+}
 
-        const movieTitle =
-            item.textContent.trim();
+// ======================
+// FILTER EVENTS
+// ======================
 
-        console.log("Clicked:", movieTitle);
+if (genreFilter) {
 
-        const alreadyExists =
-            movies.some(movie =>
-                movie.title.toLowerCase() ===
-                movieTitle.toLowerCase()
-            );
+    genreFilter.addEventListener(
+        "change",
+        applyFilters
+    );
 
-        if (alreadyExists) {
+}
 
-            alert("Movie already exists!");
+if (statusFilter) {
 
-            return;
+    statusFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+}
+
+if (sortFilter) {
+
+    sortFilter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+}
+
+// ======================
+// MODAL SEARCH
+// ======================
+
+const modalSearchInput =
+    document.getElementById(
+        "modalSearchInput"
+    );
+
+const searchResults =
+    document.getElementById(
+        "searchResults"
+    );
+
+if (modalSearchInput) {
+
+    modalSearchInput.addEventListener(
+        "input",
+        async () => {
+
+            const query =
+                modalSearchInput.value.trim();
+
+            if (query.length < 3) {
+
+                searchResults.innerHTML = "";
+
+                return;
+
+            }
+
+            searchResults.innerHTML = `
+                <p style="color:white;">
+                    Searching...
+                </p>
+            `;
+
+            try {
+
+                const response =
+                    await fetch(
+                        `https://www.omdbapi.com/?apikey=${API_KEY}&t=${encodeURIComponent(query)}`
+                    );
+
+                const data =
+                    await response.json();
+
+                if (
+                    data.Response === "False"
+                ) {
+
+                    searchResults.innerHTML = `
+                        <p style="color:white;">
+                            Movie not found.
+                        </p>
+                    `;
+
+                    return;
+
+                }
+
+                searchResults.innerHTML = `
+                    <div class="search-card">
+
+                        <img
+                            src="${data.Poster}"
+                            alt="${data.Title}"
+                        >
+
+                        <div class="search-card-info">
+
+                            <h3>
+                                ${data.Title}
+                            </h3>
+
+                            <p>
+                                ${data.Year}
+                            </p>
+
+                            <p>
+                                ${data.Genre}
+                            </p>
+
+                            <button
+                                id="addMovieBtn"
+                                class="add-btn"
+                            >
+                                Add to Watchlist
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+
+                const addMovieBtn =
+                    document.getElementById(
+                        "addMovieBtn"
+                    );
+
+                addMovieBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        const alreadyExists =
+                            movies.some(
+                                movie =>
+                                    movie.title.toLowerCase()
+                                    ===
+                                    data.Title.toLowerCase()
+                            );
+
+                        if (alreadyExists) {
+
+                            alert(
+                                "Movie already exists!"
+                            );
+
+                            return;
+
+                        }
+
+                        const newMovie = {
+
+                            title:
+                                data.Title,
+
+                            genre:
+                                data.Genre,
+
+                            year:
+                                data.Year,
+
+                            poster:
+                                data.Poster,
+
+                            status:
+                                "watchlist",
+
+                            favorite:
+                                false
+                        };
+
+                        movies.push(
+                            newMovie
+                        );
+
+                        saveMovies();
+
+                        loadPageMovies();
+
+                        modal.classList.remove(
+                            "active"
+                        );
+
+                        modalSearchInput.value =
+                            "";
+
+                        searchResults.innerHTML =
+                            "";
+
+                    }
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
         }
+    );
 
-        const movieData =
-            await fetchMovieData(movieTitle);
-
-        console.log("Movie Data:", movieData);
-
-        if (!movieData) {
-
-            alert("Movie not found!");
-
-            return;
-        }
-
-        movies.push(movieData);
-
-        saveMovies();
-
-        loadPageMovies();
-
-        modal.classList.remove("active");
-
-        alert(
-            `${movieData.title} added successfully!`
-        );
-
-    });
-
-});
+}
 
 // ======================
 // MODAL
@@ -553,6 +765,28 @@ window.addEventListener("click", (e) => {
         modal.classList.remove(
             "active"
         );
+
+    }
+
+});
+
+// ======================
+// ACTIVE NAVBAR
+// ======================
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-links a"
+    );
+
+navLinks.forEach(link => {
+
+    const linkPage =
+        link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+
+        link.classList.add("active");
 
     }
 

@@ -13,7 +13,11 @@
     <nav class="navbar">
 
         <div class="logo">
-            CineVault
+            <img
+                src="assets/logo.png"
+                alt="CineVault Logo"
+                class="logo-img"
+            >
         </div>
 
         <ul class="nav-links">
@@ -93,35 +97,69 @@
 
                 <select id="genreFilter">
 
-                    <option>Genre</option>
+                    <option value="">
+                        Genre
+                    </option>
 
-                    <option>All</option>
-                    <option>Action</option>
-                    <option>Drama</option>
-                    <option>Comedy</option>
-                    <option>Sci-Fi</option>
-                    <option>Thriller</option>
-                    <option>Romance</option>
-                    <option>Horror</option>
+                    <option value="Action">
+                        Action
+                    </option>
+
+                    <option value="Drama">
+                        Drama
+                    </option>
+
+                    <option value="Comedy">
+                        Comedy
+                    </option>
+
+                    <option value="Sci-Fi">
+                        Sci-Fi
+                    </option>
+
+                    <option value="Thriller">
+                        Thriller
+                    </option>
+
+                    <option value="Romance">
+                        Romance
+                    </option>
+
+                    <option value="Horror">
+                        Horror
+                    </option>
 
                 </select>
 
                 <select id="statusFilter">
 
-                    <option>Status</option>
+                    <option value="">
+                        Status
+                    </option>
 
-                    <option>All</option>
-                    <option>Watchlist</option>
-                    <option>Watched</option>
+                    <option value="watchlist">
+                        Watchlist
+                    </option>
+
+                    <option value="watched">
+                        Watched
+                    </option>
 
                 </select>
 
                 <select id="sortFilter">
 
-                    <option>Sort By</option>
+                    <option value="">
+                        Sort By
+                    </option>
 
-                    <option>Title</option>
-                    <option>Year</option>
+                    <option value="title">
+                        Title
+                    </option>
+
+                    <option value="year">
+                        Year
+                    </option>
 
                 </select>
 
@@ -165,29 +203,15 @@
 
             <input
                 type="text"
+                id="modalSearchInput"
                 class="modal-search"
                 placeholder="Search movie..."
             >
 
-            <div class="search-results">
-
-                <div class="result-item">
-                    Interstellar
-                </div>
-
-                <div class="result-item">
-                    Inception
-                </div>
-
-                <div class="result-item">
-                    Oppenheimer
-                </div>
-
-                <div class="result-item">
-                    The Dark Knight
-                </div>
-
-            </div>
+            <div
+                id="searchResults"
+                class="search-results"
+            ></div>
 
         </div>
 
