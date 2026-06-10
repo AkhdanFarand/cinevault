@@ -29,12 +29,6 @@ CineVault adalah website movie tracker berbasis HTML, CSS, dan JavaScript yang m
 * Favorites
 * Movie Detail
 
-## Team Members
-
-* Nama Anggota 1
-* Nama Anggota 2
-* Nama Anggota 3
-
 ## Repository
 
 Public GitHub Repository for UTS TC & IMK
